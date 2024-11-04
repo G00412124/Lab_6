@@ -1,28 +1,28 @@
-import Movies from "./movies";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import Movies from "./movies"; // Import the Movies component
+import { useEffect, useState } from "react"; // Import the useEffect and useState hooks
+import axios from "axios"; // Import axios
 
-const Read = () => {
+const Read = () => {   // Create a functional component called Read
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); // Create a state variable called movies
 
-  useEffect(() => {
-    axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
-      .then((response) => {
-        console.log(response.data);
-        setMovies(response.data.movies);
-      })
-      .catch((error) => {
-        console.log(error);
+  useEffect(() => { // Use the useEffect hook to make an API call
+    axios.get('http://localhost:4000/api/movies') // Make a GET request to the server
+      .then((response) => { // Handle the promise
+        console.log(response.data); // Log the response data to the console
+        setMovies(response.data.movies); // Set the movies state variable
+      })  
+      .catch((error) => { // Handle any errors
+        console.log(error); // Log the error to the console
       });
   });
 
-  return (
-    <div>
-      <h3>Hello from read component!</h3>
+  return (  // Return some JSX
+    <div>   
+      <h3>Hello from read component!</h3> 
       <Movies myMovies={movies} />
     </div>
   );
 }
 
-export default Read;
+export default Read; // Export the Read component
